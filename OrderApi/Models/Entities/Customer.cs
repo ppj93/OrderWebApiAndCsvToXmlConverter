@@ -9,10 +9,6 @@ namespace Models
     [Serializable]
     public class Customer
     {
-        public Customer() {
-            Number = new Random().Next();
-            Name = Number.ToString();
-        }
         public long Number { get; set; }
         public string Name { get; set; }
     }
