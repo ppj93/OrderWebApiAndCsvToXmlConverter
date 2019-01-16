@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Routing;
+using System.IO;
 
 namespace OrderApi
 {
@@ -32,16 +33,27 @@ namespace OrderApi
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterTypes();
 
-            var constructOrderDictionaryResult = ConstructOrderSearchDictionary();
-            if(constructOrderDictionaryResult.OperationStatus != OperationStatus.Success)
+            var constructOrderDictionaryResultList = ConstructOrderSearchDictionary();
+            if(!constructOrderDictionaryResultList.Any(result => result.OperationStatus == OperationStatus.Success))
                 //Log the failure reason here to Log Files
-                throw new Exception("Could not create OrderSearch Dictionary. Web API could not start");
+                throw new Exception("Could not create OrderSearch Dictionary. Hence not starting Web API");
         }
 
-        private Result ConstructOrderSearchDictionary()
+        private List<Result> ConstructOrderSearchDictionary()
         {
             var xmlPath = WebConfigurationManager.AppSettings["OrderXmlFilePath"];
-            return _orderManager.ConstructOrderSearchDictionary(xmlPath);
+            var resultList = _orderManager.ConstructOrderSearchDictionary(xmlPath);
+
+            var failedResults = resultList.Where(result => result.OperationStatus == OperationStatus.Fail).ToList();
+
+            if (failedResults.Any())
+            {
+                var resultPath = WebConfigurationManager.AppSettings["OrderSearchDictionaryConstructionResult"];
+                foreach (var result in failedResults)
+                    File.WriteAllText(resultPath, $"{result.OperationStatus}, {result.Code}, {result.Message}");
+            }
+
+            return resultList;
         }
     }
 }

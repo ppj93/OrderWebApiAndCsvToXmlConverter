@@ -9,6 +9,6 @@ namespace OrderManager.Contract
 {
     public interface IOrderManager
     {
-        Result ConstructOrderSearchDictionary(string xmlFilePath); 
+        List<Result> ConstructOrderSearchDictionary(string xmlFilePath);
     }
 }

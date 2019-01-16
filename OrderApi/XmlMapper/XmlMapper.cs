@@ -117,9 +117,26 @@ namespace XmlMapper
             return result;
         }
 
-        public Result GetProductListFromXml(XElement node, out List<Product> order)
+        public Result GetProductListFromXml(XElement root, out List<Product> productList)
         {
-            throw new NotImplementedException();
+            var result = new Result() { OperationStatus = OperationStatus.Success };
+            productList = null;
+
+            if (root == null || root.Nodes().Count() == 0)
+            {
+                //Log failed response here.
+                return Result.GetFailedResult(ResultCodes.InputValidationFail, "Product List root node is null or has no child nodes");
+            }
+            productList = new List<Product>();
+
+            foreach (var productNode in root.Nodes())
+            {
+                result = GetProductFromXml(productNode as XElement, out OrderProduct parsedProduct);
+                if (result.OperationStatus != OperationStatus.Success) return result;
+                productList.Add(parsedProduct)
+            }
+
+            return result;
         }
     }
 }
