@@ -1,10 +1,7 @@
 ﻿using Common;
 using OrderXmlMapper.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace OrderXmlMapper
@@ -34,11 +31,12 @@ namespace OrderXmlMapper
                 return result;
             }
 
-            orderElement = new XElement(Common.XmlNodeNames.Orders.Order,
-                new XElement(Common.XmlNodeNames.Orders.Date, orderItems.First()[9]),
-                new XElement(Common.XmlNodeNames.Orders.Number, orderItems.First()[1]));
+            //Line Number ignored because it is a serial number 
+            orderElement = new XElement(XmlNodeNames.Orders.Order,
+                new XElement(XmlNodeNames.Orders.Date, orderItems.First()[9]),
+                new XElement(XmlNodeNames.Orders.Number, orderItems.First()[1]));
 
-            var productsElement = new XElement(Common.XmlNodeNames.Orders.Products);
+            var productsElement = new XElement(XmlNodeNames.Orders.Products);
 
             foreach (var order in orderItems)
             {
@@ -54,21 +52,21 @@ namespace OrderXmlMapper
 
         private static XElement GetProductFromOrderRow(string[] values)
         {
-            return new XElement(Common.XmlNodeNames.Product.Title,
-                new XElement(Common.XmlNodeNames.Product.Name, values[5]),
-                new XElement(Common.XmlNodeNames.Product.Price, values[7]),
-                new XElement(Common.XmlNodeNames.Product.Group, values[8]),
-                new XElement(Common.XmlNodeNames.Product.Number, values[3]),
-                new XElement(Common.XmlNodeNames.Product.Quantity, values[4]),
-                new XElement(Common.XmlNodeNames.Product.Description, values[6])
+            return new XElement(XmlNodeNames.Product.Title,
+                new XElement(XmlNodeNames.Product.Name, values[5]),
+                new XElement(XmlNodeNames.Product.Price, values[7]),
+                new XElement(XmlNodeNames.Product.Group, values[8]),
+                new XElement(XmlNodeNames.Product.Number, values[3]),
+                new XElement(XmlNodeNames.Product.Quantity, values[4]),
+                new XElement(XmlNodeNames.Product.Description, values[6])
                 );
         }
 
         private static XElement GetCustomerFromOrderRow(string[] values)
         {
-            return new XElement(Common.XmlNodeNames.Customer.Title,
-                new XElement(Common.XmlNodeNames.Customer.Name, values[10]),
-                new XElement(Common.XmlNodeNames.Product.Number, values[11])
+            return new XElement(XmlNodeNames.Customer.Title,
+                new XElement(XmlNodeNames.Customer.Name, values[10]),
+                new XElement(XmlNodeNames.Product.Number, values[11])
                 );
         }
     }

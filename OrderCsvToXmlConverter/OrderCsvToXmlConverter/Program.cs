@@ -5,12 +5,8 @@ using OrderXmlMapper;
 using OrderXmlMapper.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -79,7 +75,7 @@ namespace OrderCsvToXmlConverter
                 }
             }
             var getOrderElementStatus = orderMapper.GetOrderElement(orderItems, out XElement orderXmlNode);
-            if (getOrderElementStatus.OperationStatus != Common.OperationStatus.Success)
+            if (getOrderElementStatus.OperationStatus != OperationStatus.Success)
             {
                 Console.WriteLine($"Skipping file {file} because there an issue reading CSV: {getOrderElementStatus.Code}-{getOrderElementStatus.Message}");
                 return getOrderElementStatus;
