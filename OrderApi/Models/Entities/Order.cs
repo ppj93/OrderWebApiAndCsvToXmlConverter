@@ -9,7 +9,7 @@ namespace Models
     [Serializable]
     public class Order
     { 
-        public long Number { get; set; } //Could have named it OrderNumber. But since it is alraedy inside Order Class, Order prefix feels redundant
+        public long? Number { get; set; } //Could have named it OrderNumber. But since it is alraedy inside Order Class, Order prefix feels redundant
         public List<Product> Products { get; set; }
         public DateTime? Date { get; set; }
         public Customer CustomerDetails { get; set; }

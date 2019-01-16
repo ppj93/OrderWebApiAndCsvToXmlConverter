@@ -57,14 +57,7 @@ namespace OrderManager
             var order = new Order();
             foreach (XElement desc in orderNode.Nodes())
             {
-                if (desc.Name == XmlNodeNames.Orders.Date)
-                    order.Date = DateTime.Parse(desc.Value); // TODO: replace by try parse
-                else if (desc.Name == XmlNodeNames.Orders.Products)
-                    order.Products = CreateProductListFromXml(desc);
-                else if (desc.Name == XmlNodeNames.Orders.Number)
-                    order.Number = long.Parse(desc.Value);
-                else if (desc.Name == XmlNodeNames.Customer.Title)
-                    order.CustomerDetails = CreateCustomerFromXml(desc);
+               
             }
 
             return order;
@@ -84,18 +77,7 @@ namespace OrderManager
 
             foreach (XElement desc in root.Nodes())
             {
-                if (desc.Name == XmlNodeNames.Product.Name)
-                    product.Name = desc.Value;
-                else if (desc.Name == XmlNodeNames.Product.Number)
-                    product.Number = desc.Value;
-                else if (desc.Name == XmlNodeNames.Product.Quantity)
-                    product.Quantity = int.Parse(desc.Value);
-                else if (desc.Name == XmlNodeNames.Product.Group)
-                    product.Group = desc.Value;
-                else if (desc.Name == XmlNodeNames.Product.Price)
-                    product.Price = decimal.Parse(desc.Value);
-                else if (desc.Name == XmlNodeNames.Product.Description)
-                    product.Description = desc.Value;
+              
             }
             return product;
         }

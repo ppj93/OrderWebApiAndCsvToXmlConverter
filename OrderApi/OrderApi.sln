@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{028AF215-9C09-4CC7-86CF-24AAD04FE9A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlMapper", "XmlMapper\XmlMapper.csproj", "{6687F21D-126E-4F91-831C-26082992FDDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{028AF215-9C09-4CC7-86CF-24AAD04FE9A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028AF215-9C09-4CC7-86CF-24AAD04FE9A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028AF215-9C09-4CC7-86CF-24AAD04FE9A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6687F21D-126E-4F91-831C-26082992FDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6687F21D-126E-4F91-831C-26082992FDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6687F21D-126E-4F91-831C-26082992FDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6687F21D-126E-4F91-831C-26082992FDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

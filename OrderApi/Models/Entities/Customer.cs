@@ -9,7 +9,7 @@ namespace Models
     [Serializable]
     public class Customer
     {
-        public long Number { get; set; }
+        public long? Number { get; set; }
         public string Name { get; set; }
     }
 }

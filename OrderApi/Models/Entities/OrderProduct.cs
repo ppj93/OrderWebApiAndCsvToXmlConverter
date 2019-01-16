@@ -10,6 +10,6 @@ namespace Models
     [Serializable]
     public class OrderProduct: Product
     {
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
     }
 }
