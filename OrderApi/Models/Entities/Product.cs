@@ -9,7 +9,7 @@ namespace Models
     [Serializable]
     public class Product
     {
-        public long Number { get; set; }
+        public string Number { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
