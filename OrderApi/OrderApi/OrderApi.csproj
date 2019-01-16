@@ -141,6 +141,10 @@
       <Project>{7502016b-7701-42cb-b325-90af635eccbe}</Project>
       <Name>OrderManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XmlMapper\XmlMapper.csproj">
+      <Project>{6687f21d-126e-4f91-831c-26082992fdda}</Project>
+      <Name>XmlMapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

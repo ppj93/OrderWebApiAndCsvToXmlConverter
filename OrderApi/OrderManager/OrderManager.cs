@@ -16,18 +16,14 @@ namespace OrderManager
     public class OrderManager : IOrderManager
     {
         private readonly IXmlMapper _xmlMapper;
-        public OrderManager(IXmlMapper xmlMapper)
-        {
-            _xmlMapper = xmlMapper;
-        }
-        private readonly IDictionary<long, Order> OrderIdToOrder;
-
-        public OrderManager() : this(new Dictionary<long, Order>()) { }
+     
+        private readonly IDictionary<long, Order> _orderIdToOrderMap;
 
         //Constructor for unit testing purposes
-        public OrderManager(IDictionary<long, Order> orderIdToFileOffset)
+        public OrderManager(IXmlMapper xmlMapper, IDictionary<long, Order> orderIdToFileOffset=null)
         {
-            OrderIdToOrder = orderIdToFileOffset;
+            _orderIdToOrderMap = orderIdToFileOffset ?? new Dictionary<long, Order>();
+            _xmlMapper = xmlMapper;
         }
 
         public List<Result> ConstructOrderSearchDictionary(string xmlFilePath)
@@ -58,7 +54,7 @@ namespace OrderManager
                     resultList.Add(parseOrderResult);
 
                     if (parseOrderResult.OperationStatus == OperationStatus.Success)
-                        OrderIdToOrder.Add(parsedOrder.Number.Value, parsedOrder);
+                        _orderIdToOrderMap.Add(parsedOrder.Number.Value, parsedOrder);
                 }
             }
 

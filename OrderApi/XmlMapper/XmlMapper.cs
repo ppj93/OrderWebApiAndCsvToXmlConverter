@@ -57,7 +57,10 @@ namespace XmlMapper
                 if (desc.Name == XmlNodeNames.Orders.Date)
                     order.Date = DateTime.Parse(desc.Value); // TODO: replace by try parse
                 else if (desc.Name == XmlNodeNames.Orders.Products)
+                { 
                     result = GetProductListFromXml(desc, out List<OrderProduct> productList);
+                    order.Products = productList;
+                }
                 else if (desc.Name == XmlNodeNames.Orders.Number)
                 {
                     order.Number = Utilties.SafeParse<long>(desc.Value, long.TryParse);
