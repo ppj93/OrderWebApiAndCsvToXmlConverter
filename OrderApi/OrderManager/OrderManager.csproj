@@ -54,6 +54,10 @@
       <Project>{8afd6614-1719-4fbd-bfbd-c043089f8186}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XmlMapper\XmlMapper.csproj">
+      <Project>{6687f21d-126e-4f91-831c-26082992fdda}</Project>
+      <Name>XmlMapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

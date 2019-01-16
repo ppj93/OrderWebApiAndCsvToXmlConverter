@@ -57,7 +57,7 @@ namespace XmlMapper
                 if (desc.Name == XmlNodeNames.Orders.Date)
                     order.Date = DateTime.Parse(desc.Value); // TODO: replace by try parse
                 else if (desc.Name == XmlNodeNames.Orders.Products)
-                    result = GetProductListFromXml(desc, out List<Product> productList);
+                    result = GetProductListFromXml(desc, out List<OrderProduct> productList);
                 else if (desc.Name == XmlNodeNames.Orders.Number)
                 {
                     order.Number = Utilties.SafeParse<long>(desc.Value, long.TryParse);
@@ -117,7 +117,7 @@ namespace XmlMapper
             return result;
         }
 
-        public Result GetProductListFromXml(XElement root, out List<Product> productList)
+        public Result GetProductListFromXml(XElement root, out List<OrderProduct> productList)
         {
             var result = new Result() { OperationStatus = OperationStatus.Success };
             productList = null;
@@ -127,13 +127,13 @@ namespace XmlMapper
                 //Log failed response here.
                 return Result.GetFailedResult(ResultCodes.InputValidationFail, "Product List root node is null or has no child nodes");
             }
-            productList = new List<Product>();
+            productList = new List<OrderProduct>();
 
             foreach (var productNode in root.Nodes())
             {
                 result = GetProductFromXml(productNode as XElement, out OrderProduct parsedProduct);
                 if (result.OperationStatus != OperationStatus.Success) return result;
-                productList.Add(parsedProduct)
+                productList.Add(parsedProduct);
             }
 
             return result;
