@@ -1,8 +1,15 @@
-﻿namespace Common
+﻿using Newtonsoft.Json;
+
+namespace Common
 {
     public static class Utilties
     {
         public delegate bool TryParseHandler<T>(string s, out T parsedObject);
+
+        public static T JsonSerializeClone<T>(T obj)
+        {
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj)); 
+        }
 
         public static T? SafeParse<T>(object obj, TryParseHandler<T> tryParseHandler) where T: struct
         {

@@ -12,7 +12,7 @@ namespace XmlMapper
     {
         public Result GetCustomerFromXml(XElement root, out Customer customer)
         {
-            var result = new Result() { OperationStatus = OperationStatus.Success };
+            var result = Result.GetSuccessResult();
             customer = null;
 
             if (root == null || root.Nodes().Count() == 0)
@@ -39,7 +39,7 @@ namespace XmlMapper
 
         public Result GetOrderFromXml(XElement root, out Order order)
         {
-            var result = new Result() { OperationStatus = OperationStatus.Success };
+            var result = Result.GetSuccessResult();
             order = null;
 
             if (root == null || root.Nodes().Count() == 0)
@@ -79,7 +79,7 @@ namespace XmlMapper
 
         public Result GetProductFromXml(XElement root, out OrderProduct product)
         {
-            var result = new Result() { OperationStatus = OperationStatus.Success };
+            var result = Result.GetSuccessResult();
             product = null;
 
             if (root == null || root.Nodes().Count() == 0)
@@ -119,7 +119,7 @@ namespace XmlMapper
 
         public Result GetProductListFromXml(XElement root, out List<OrderProduct> productList)
         {
-            var result = new Result() { OperationStatus = OperationStatus.Success };
+            var result = Result.GetSuccessResult();
             productList = null;
 
             if (root == null || root.Nodes().Count() == 0)

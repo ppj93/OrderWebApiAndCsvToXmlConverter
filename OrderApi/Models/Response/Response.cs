@@ -8,6 +8,11 @@ namespace Models.Response
     [Serializable]
     public class Response
     {
+        public Response(Result result)
+        {
+            Result = result;
+        }
+
         [DataMember]
         public Result Result { get; set; }
     }

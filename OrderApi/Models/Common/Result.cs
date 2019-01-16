@@ -15,6 +15,10 @@ namespace Common
         [DataMember]
         public string Message { get; set; }
 
+        public static Result GetSuccessResult() {
+            return new Result() { OperationStatus = OperationStatus.Success };
+        }
+
         public static Result GetFailedResult(string code, string message) {
             return new Result() { OperationStatus = OperationStatus.Fail, Code = code, Message = message };
         }

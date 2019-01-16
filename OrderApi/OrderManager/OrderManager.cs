@@ -56,5 +56,22 @@ namespace OrderManager
 
             return resultList;
         }
+
+        public Result Get(long orderNumber, out Order order)
+        {
+            order = null;
+
+            //Request is already validated in Controller layer.
+            if(_orderIdToOrderMap.ContainsKey(orderNumber))
+            {
+                //Assignig clone of object to avoid impact of caller methods on modification of Order object..Just a good development practice.
+                //If Caller wants to modify Order object, it should call appropriate API 
+                order = Utilties.JsonSerializeClone<Order>(_orderIdToOrderMap[orderNumber]);
+                return Result.GetSuccessResult();
+            }
+
+            return Result.GetFailedResult(ResultCodes.OrderMatchingCriteriaNotFound, 
+                "Order you searched for is not present in our Catalogue.. Please try another Order");
+        }
     }
 }

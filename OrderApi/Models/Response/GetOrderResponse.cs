@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Runtime.Serialization;
 
 namespace Models.Response
@@ -7,6 +8,11 @@ namespace Models.Response
     [DataContract]
     public class GetOrderResponse: Response
     {
+        public GetOrderResponse(Result result, Order order=null):base(result)
+        {
+            Order = order;
+        }
+
         [DataMember]
         public Order Order { get; set; }
     }

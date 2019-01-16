@@ -11,24 +11,22 @@ namespace OrderApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        private readonly IOrderManager _orderManager;
+        private IOrderManager _orderManager;
 
         //Parametrized constructor for ease of unit testing
-        public WebApiApplication(IOrderManager orderManager=null)
+        public WebApiApplication(IOrderManager orderManager)
         {
-            if(orderManager == null)
-            {
-                UnityConfig.RegisterTypes();
-                orderManager = UnityConfig.Resolve<IOrderManager>();
-            }
-
             _orderManager = orderManager;
+        }
+
+        public WebApiApplication()
+        {
         }
 
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            UnityConfig.RegisterTypes();
+            UnityConfig.RegisterComponents();
 
             var constructOrderDictionaryResultList = ConstructOrderSearchDictionary();
             if(!constructOrderDictionaryResultList.Any(result => result.OperationStatus == OperationStatus.Success))
@@ -39,6 +37,7 @@ namespace OrderApi
         private List<Result> ConstructOrderSearchDictionary()
         {
             var xmlPath = WebConfigurationManager.AppSettings["OrderXmlFilePath"];
+            _orderManager = _orderManager ?? UnityConfig.Resolve<IOrderManager>();
             var resultList = _orderManager.ConstructOrderSearchDictionary(xmlPath);
 
             var failedResults = resultList.Where(result => result.OperationStatus == OperationStatus.Fail).ToList();

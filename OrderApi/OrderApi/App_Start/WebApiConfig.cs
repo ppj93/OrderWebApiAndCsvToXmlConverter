@@ -19,8 +19,9 @@ namespace OrderApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
+
             /*to get JSON by default*/
-           config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html") );
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html") );
         }
     }
 }
