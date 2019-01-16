@@ -59,7 +59,8 @@ namespace OrderXmlMapper
                 new XElement(Common.XmlNodeNames.Product.Price, values[7]),
                 new XElement(Common.XmlNodeNames.Product.Group, values[8]),
                 new XElement(Common.XmlNodeNames.Product.Number, values[3]),
-                new XElement(Common.XmlNodeNames.Product.Quantity, values[4])
+                new XElement(Common.XmlNodeNames.Product.Quantity, values[4]),
+                new XElement(Common.XmlNodeNames.Product.Description, values[6])
                 );
         }
 
