@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,8 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\Result.cs" />
+    <Compile Include="Response\Response.cs" />
+    <Compile Include="Response\GetOrderResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

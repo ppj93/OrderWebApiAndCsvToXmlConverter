@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Common
 {
+    [DataContract]
+    [Serializable]
     public class Result {
+        [DataMember]
         public OperationStatus OperationStatus { get; set; }
+
+        [DataMember]
         public string Code { get; set; }
+
+        [DataMember]
         public string Message { get; set; }
 
         public static Result GetFailedResult(string code, string message) {

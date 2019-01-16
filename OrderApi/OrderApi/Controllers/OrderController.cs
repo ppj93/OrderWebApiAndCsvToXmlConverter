@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using Models;
 using System.Web.Http;
 
 namespace OrderApi.Controllers
@@ -10,8 +6,8 @@ namespace OrderApi.Controllers
     public class OrderController : ApiController
     {
         [HttpGet]
-        public string xyz() {
-            return "asdfasf";
+        public Order xyz() {
+            return new Order() { CustomerDetails = new Customer() { Name = "hello", Number = 122} };
         }
     }
 }
