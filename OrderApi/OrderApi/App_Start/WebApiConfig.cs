@@ -16,7 +16,7 @@ namespace OrderApi
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{action}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new { id = RouteParameter.Optional, controller = "order", action = "StartUp" }
             );
 
 
