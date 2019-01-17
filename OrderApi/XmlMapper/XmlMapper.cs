@@ -52,9 +52,13 @@ namespace XmlMapper
             foreach (XElement desc in root.Nodes())
             {
                 if (desc.Name == XmlNodeNames.Orders.Date)
-                    order.Date = DateTime.Parse(desc.Value); // TODO: replace by try parse
+                {
+                    order.Date = Utilties.SafeParse<DateTime>(desc.Value, DateTime.TryParse);
+                    if (!order.Date.HasValue)
+                        result = Result.GetFailedResult(ResultCodes.ParseFail, $"Order Date failed to parse {root.ToString()}");
+                }
                 else if (desc.Name == XmlNodeNames.Orders.Products)
-                { 
+                {
                     result = GetProductListFromXml(desc, out List<OrderProduct> productList);
                     order.Products = productList;
                 }
