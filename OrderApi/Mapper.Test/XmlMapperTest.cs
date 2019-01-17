@@ -46,11 +46,27 @@ namespace Mapper.Test
 
         [TestMethod]
         public void GetOrderFromXmlParsesOrderInformationCorrectly()
+
         {
             var xmlMapper = new XmlMapper.XmlMapper();
+
+            var productElement = new XElement(XmlNodeNames.Orders.Products, new XElement(XmlNodeNames.Product.Title,
+                new XElement(XmlNodeNames.Product.Number, "122"),
+                new XElement(XmlNodeNames.Product.Description, "Description1"),
+                new XElement(XmlNodeNames.Product.Price, "9.12"),
+                new XElement(XmlNodeNames.Product.Quantity, "12"),
+                new XElement(XmlNodeNames.Product.Name, "XYZ Computer"),
+                new XElement(XmlNodeNames.Product.Group, "Group1")));
+
+            var customerElement = new XElement(XmlNodeNames.Customer.Title,
+              new XElement(XmlNodeNames.Customer.Number, "122"),
+              new XElement(XmlNodeNames.Customer.Name, "Pravin"));
+
             var inputOrder = new XElement("Orders", new XElement(XmlNodeNames.Orders.Order),
                 new XElement(XmlNodeNames.Orders.Date, "2019-01-01"),
-                new XElement(XmlNodeNames.Orders.Number, "12")
+                new XElement(XmlNodeNames.Orders.Number, "12"),
+                productElement,
+                customerElement
                 );
 
             var mapperResult = xmlMapper.GetOrderFromXml(inputOrder, out Order order);
